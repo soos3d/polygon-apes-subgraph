@@ -1,0 +1,28 @@
+specVersion: 0.0.5
+description: A subgraph to index data on the ChumbiNFT contract
+features:
+  - ipfsOnEthereumContracts
+schema:
+  file: ./schema.graphql
+dataSources:
+  - kind: ethereum
+    name: PolygonApes
+    network: matic
+    source:
+      address: "0x419e82D502f598Ca63d821D3bBD8dFEFAf9Bbc8D"
+      abi: PolygonApes
+      startBlock: 35647470
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.6
+      language: wasm/assemblyscript
+      entities:
+        - Transfer
+        - PolygonApe
+      abis:
+        - name: PolygonApes
+          file: ./abis/PolygonApes.json
+      eventHandlers:
+        - event: Transfer(indexed address,indexed address,indexed uint256)
+          handler: handleTransfer
+      file: ./src/polygon-apes.ts

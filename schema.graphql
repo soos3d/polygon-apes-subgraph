@@ -1,0 +1,18 @@
+type Transfer @entity(immutable: true) {
+  id: Bytes!
+  from: Bytes!
+  to: Bytes!
+  tokenId: BigInt! 
+  blockNumber: BigInt!
+  transactionHash: Bytes!
+}
+
+type PolygonApe @entity {
+  id: ID!
+  name: String!
+  symbol: String!
+  creator: Bytes!
+  newOwner: Bytes!
+  tokenURI: String!
+  blockNumber: BigInt!
+}
